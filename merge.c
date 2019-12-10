@@ -11,17 +11,17 @@ void merge(int* x, int* y, int* z, int n, int m, int* newSize) {
         if (j >= m || (i < n && x[i] < y[j])) {
             z[k] = x[i];
             i++;
-            k++;
         } else if (i >= n || (j < m && y[j] < x[i])) {
             z[k] = y[j];
             j++;
-            k++;
-        } else {
-            i++;
+        } else if (j < m && i < n && x[i] == y[j]) {
+            z[k] = x[i];
+			i++;
             j++;
             duplicates++;
         }
+		k++;
     }
 
-    *newSize = n + m - duplicates * 2;
+    *newSize = n + m - duplicates;
 }
